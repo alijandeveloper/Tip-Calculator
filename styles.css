@@ -3,6 +3,7 @@ body {
     background-color: #f4f4f4;
     text-align: center;
     padding: 20px;
+    transition: background 0.3s, color 0.3s;
 }
 
 .container {
@@ -20,6 +21,7 @@ input, select, button {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 button {
@@ -44,6 +46,21 @@ button:hover {
 }
 
 .dark-mode {
-    background-color: #333;
+    background-color: #222;
     color: white;
+}
+
+.dark-mode .container {
+    background: #333;
+    color: white;
+}
+
+.dark-mode input, .dark-mode select, .dark-mode button {
+    background: #444;
+    color: white;
+    border: 1px solid #777;
+}
+
+.dark-mode button:hover {
+    background: #555;
 }
