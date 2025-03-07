@@ -30,3 +30,7 @@ function calculateTip() {
     
     document.getElementById("totalPerPerson").textContent = perPerson.toFixed(2);
 }
+
+document.getElementById("themeToggle").addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+});
