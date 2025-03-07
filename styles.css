@@ -33,3 +33,17 @@ button {
 button:hover {
     background: #218838;
 }
+
+#themeToggle {
+    margin-top: 20px;
+    background: #007bff;
+}
+
+#themeToggle:hover {
+    background: #0056b3;
+}
+
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
