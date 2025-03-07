@@ -1,36 +1,44 @@
-function handleCustomTip() {
-    const tipPercentage = document.getElementById("tipPercentage").value;
+document.addEventListener("DOMContentLoaded", function() {
+    const tipPercentageSelect = document.getElementById("tipPercentage");
     const customTipInput = document.getElementById("customTip");
-    if (tipPercentage === "custom") {
-        customTipInput.style.display = "block";
-    } else {
-        customTipInput.style.display = "none";
-    }
-}
+    const calculateBtn = document.getElementById("calculateBtn");
+    const themeToggle = document.getElementById("themeToggle");
 
-function calculateTip() {
-    const billAmount = parseFloat(document.getElementById("billAmount").value);
-    const peopleCount = parseInt(document.getElementById("peopleCount").value);
-    let tipPercentage = document.getElementById("tipPercentage").value;
-    
-    if (tipPercentage === "custom") {
-        tipPercentage = parseFloat(document.getElementById("customTip").value) / 100;
-    } else {
-        tipPercentage = parseFloat(tipPercentage);
-    }
-    
-    if (isNaN(billAmount) || isNaN(peopleCount) || isNaN(tipPercentage)) {
-        alert("Please enter valid inputs");
-        return;
-    }
-    
-    const totalTip = billAmount * tipPercentage;
-    const totalBill = billAmount + totalTip;
-    const perPerson = totalBill / peopleCount;
-    
-    document.getElementById("totalPerPerson").textContent = perPerson.toFixed(2);
-}
+    // Custom Tip Input Show/Hide
+    tipPercentageSelect.addEventListener("change", function() {
+        if (this.value === "custom") {
+            customTipInput.style.display = "block";
+        } else {
+            customTipInput.style.display = "none";
+        }
+    });
 
-document.getElementById("themeToggle").addEventListener("click", function() {
-    document.body.classList.toggle("dark-mode");
+    // Tip Calculation
+    calculateBtn.addEventListener("click", function() {
+        const billAmount = parseFloat(document.getElementById("billAmount").value);
+        const peopleCount = parseInt(document.getElementById("peopleCount").value);
+        let tipPercentage = tipPercentageSelect.value;
+
+        if (tipPercentage === "custom") {
+            tipPercentage = parseFloat(customTipInput.value) / 100;
+        } else {
+            tipPercentage = parseFloat(tipPercentage);
+        }
+
+        if (isNaN(billAmount) || isNaN(peopleCount) || isNaN(tipPercentage) || billAmount <= 0 || peopleCount <= 0) {
+            alert("Please enter valid inputs!");
+            return;
+        }
+
+        const totalTip = billAmount * tipPercentage;
+        const totalBill = billAmount + totalTip;
+        const perPerson = totalBill / peopleCount;
+
+        document.getElementById("totalPerPerson").textContent = perPerson.toFixed(2);
+    });
+
+    // Theme Toggle
+    themeToggle.addEventListener("click", function() {
+        document.body.classList.toggle("dark-mode");
+    });
 });
